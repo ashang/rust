@@ -121,7 +121,7 @@ pub enum Attribute {
     ZExt            = 18,
     InReg           = 19,
     SanitizeThread  = 20,
-    SanitizeAddress  = 21,
+    SanitizeAddress = 21,
     SanitizeMemory  = 22,
 }
 
