@@ -48,6 +48,7 @@ pub struct Config {
     pub target_config: HashMap<String, Target>,
     pub full_bootstrap: bool,
     pub extended: bool,
+    pub sanitizers: bool,
 
     // llvm codegen options
     pub llvm_assertions: bool,
@@ -148,6 +149,7 @@ struct Build {
     python: Option<String>,
     full_bootstrap: Option<bool>,
     extended: Option<bool>,
+    sanitizers: Option<bool>,
 }
 
 /// TOML representation of various global install decisions.
@@ -292,6 +294,7 @@ impl Config {
         set(&mut config.vendor, build.vendor);
         set(&mut config.full_bootstrap, build.full_bootstrap);
         set(&mut config.extended, build.extended);
+        set(&mut config.sanitizers, build.sanitizers);
 
         if let Some(ref install) = toml.install {
             config.prefix = install.prefix.clone().map(PathBuf::from);
@@ -435,6 +438,7 @@ impl Config {
                 ("VENDOR", self.vendor),
                 ("FULL_BOOTSTRAP", self.full_bootstrap),
                 ("EXTENDED", self.extended),
+                ("SANITIZERS", self.sanitizers),
             }
 
             match key {
